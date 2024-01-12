@@ -1,0 +1,14 @@
+﻿@{
+    var routeUrl = ViewContext.RouteData.Values["Page"].ToString();
+    var pages = new List<string> { "Schedule", "Account", "Report" };
+    //if routeUrl contains any of pages,the page will use _Layout as Layout page,the other pages will use _Layout1 ad Layout page
+    if (pages.Any(routeUrl.Contains))
+    {
+        Layout = "Employee_Layout";
+    }
+    else
+    {
+        Layout = "_Layout";
+    }
+
+}

@@ -1,0 +1,261 @@
+﻿@page
+@model IndexModel
+@if (TempData["Alert"] != null)
+{
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script type="text/javascript">
+        toastr.options = { "positionClass": "toast-bottom-right" }
+        toastr.error('Your ticket will be sent to your email', 'bravo!')
+    </script>
+}
+@{
+    ViewData["Title"] = "Home page";
+}
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
+
+
+<section class="site-hero overlay" data-stellar-background-ratio="0.5" id="section-home">
+    <div class="container">
+        <div class="row site-hero-inner justify-content-center align-items-center">
+            <div class="col-md-10 text-center" data-aos="fade-up">
+                <h1 class="heading">Visit our zoo &amp; Enjoy</h1>
+            </div>
+        </div>
+    </div>
+
+    <a class="mouse smoothscroll" href="#section-events">
+        <div class="mouse-icon">
+            <span class="mouse-wheel"></span>
+        </div>
+    </a>
+</section>
+<!-- END section -->
+
+<section class="section  bg-light pb-0" id="section-ticket">
+    <form asp-page-handler="Ticket" method="post">
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Email address</label>
+                            <input type="email" asp-for="Ticket.Email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Confirm</button>
+                    </div>
+                
+            </div>
+        </div>
+    </div>
+    <div class="container">
+
+        <div class="row check-availabilty">
+            <div class="col-12">
+                <div class="block-32" data-aos="fade-up" data-aos-offset="-200">
+
+                   
+                        <div class="input-group mb-3">
+                            <button class="btn btn-secondary dropdown-toggle m-auto" type="button" id="dropdownMenuClickable" data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false">Choose tickets</button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuClickable">
+                                <li>
+                                    <div class="row">
+                                        <div class="col-5"><p>Adult</p></div>
+                                        <div class="col-7">
+                                            <span><input type="button" value="+" id="increse" /><input type="number" asp-for="Ticket.Adult" id="number" min="0" max="20" /><input type="button" value="-" id="decrese"></span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="row">
+                                        <div class="col-5"><p>Children</p></div>
+                                        <div class="col-7">
+                                            <span><input type="button" value="+" id="increseC" /><input type="number" asp-for="Ticket.Children" id="numberC" min="0" max="20" /><input type="button" value="-" id="decreseC"></span>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <input type="date" class="form-control" asp-for="Ticket.Date">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary m-auto" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                By ticket
+                            </button>
+
+                            <!-- Modal -->
+
+                        </div>
+                    
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    </form>
+</section>
+
+<section class="section blog-post-entry bg-light" id="section-events">
+    <div class="container">
+        <div class="row justify-content-center text-center mb-5">
+            <div class="col-md-7">
+                <h2 class="heading" data-aos="fade-up">Events</h2>
+                <p data-aos="fade-up">
+                    Follow the wildlife care specialists and veterinarians who have dedicated their lives to caring for the birds, mammals, reptiles, and aquatic wildlife that call the Zoo and Safari Park home. Don’t miss an event!
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-sm-6 col-12 post" data-aos="fade-up" data-aos-delay="100">
+
+                <div class="media media-custom d-block mb-4 h-100">
+                    <a href="#" class="mb-4 d-block"><img src="images/event1.jpg" alt="Image placeholder" class="img-fluid"></a>
+                    <div class="media-body">
+                        <span class="meta-post">February 26, 2023</span>
+                        <h2 class="mt-0 mb-3"><a href="#">Cubs Come Home</a></h2>
+                        <p>
+                            A pair of rescued mountain lion cubs are ready for their new habitat.
+                            Staff celebrate when a lappet-faced vulture produces the Zoo's first egg for the species.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6 col-12 post" data-aos="fade-up" data-aos-delay="200">
+                <div class="media media-custom d-block mb-4 h-100">
+                    <a href="#" class="mb-4 d-block"><img src="images/event2.jpg" alt="Image placeholder" class="img-fluid"></a>
+                    <div class="media-body">
+                        <span class="meta-post">March 5, 2023</span>
+                        <h2 class="mt-0 mb-3"><a href="#">Baby Miracles</a></h2>
+                        <p>
+                            A hippo named Funani welcomes an adorable addition to the family. A team of staff raise an orphaned koala joey named Omeo.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6 col-12 post" data-aos="fade-up" data-aos-delay="300">
+                <div class="media media-custom d-block mb-4 h-100">
+                    <a href="#" class="mb-4 d-block"><img src="images/event3.jpg" alt="Image placeholder" class="img-fluid"></a>
+                    <div class="media-body">
+                        <span class="meta-post">March 13, 2023</span>
+                        <h2 class="mt-0 mb-3"><a href="#">Baby Wallaby Debut</a></h2>
+                        <p>
+                            Wallaby Thelma and her joey Everest become ambassador animals, and a new perch is created for Stuart, the young fishing cat.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section bg-image overlay" style="background-image: url('images/live.jpg');">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-12 col-md-6 text-center mb-4 mb-md-0 text-md-left" data-aos="fade-up">
+                <h2 class="text-white font-weight-bold">Live Cameras at Our Zoo!</h2>
+            </div>
+            <div class="col-12 col-md-6 text-center text-md-right" data-aos="fade-up" data-aos-delay="200">
+                <!-- Extra large modal -->
+                <a asp-page="/Our_Animals" class="btn btn-outline-white-primary py-3 text-white px-5">Watch Live</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- END section -->
+<section class="section testimonial-section">
+    <div class="container">
+        <div class="row justify-content-center text-center mb-5">
+            <div class="col-md-7">
+                <h2 class="heading" data-aos="fade-up">People Says</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="js-carousel-2 owl-carousel mb-5" data-aos="fade-up" data-aos-delay="200">
+                @foreach (var item in Model.commentManager.GetComments())
+                {
+                    <div class="testimonial text-center slider-item">
+                        <div class="author-image mb-3">
+                            <img src="images/person_1.jpg" alt="Image placeholder" class="rounded-circle mx-auto">
+                        </div>
+                        <blockquote>
+
+                            <p>&ldquo;@item&rdquo;</p>
+                        </blockquote>
+                    </div>
+                }
+
+
+            </div>
+            <!-- END slider -->
+        </div>
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="comment">
+                    <p>Give us comment</p>
+                    <form asp-page-handler="Comment" method="post">
+                        <div class="col-12">
+                            @*<textarea name="" id="" cols="30" rows="3" asp-for="Comment"></textarea>*@
+                            <input type="text" class="form-control" asp-for="Comment">
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-outline-white" type="submit">Send!</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    const addBtn = document.querySelector("#increse");
+    const minBtn = document.querySelector("#decrese");
+    let number = 0;
+    const text = document.querySelector("#number");
+
+    const addBtnC = document.querySelector("#increseC");
+    const minBtnC = document.querySelector("#decreseC");
+    let numberC = 0;
+    const textC = document.querySelector("#numberC");
+
+    addBtn.addEventListener('click', function () {
+
+        number = number + 1;
+
+        text.value = number;
+    })
+
+    minBtn.addEventListener('click', function () {
+        if ((number - 1) >= 0) {
+            number = number - 1;
+        }
+
+        text.value = number;
+    })
+
+    addBtnC.addEventListener('click', function () {
+
+        numberC = numberC + 1;
+
+        textC.value = numberC;
+    })
+
+    minBtnC.addEventListener('click', function () {
+        if ((numberC - 1) >= 0) {
+            numberC = numberC - 1;
+        }
+
+        textC.value = numberC;
+    })
+</script>

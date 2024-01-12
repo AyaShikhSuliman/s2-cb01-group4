@@ -1,0 +1,116 @@
+﻿@page
+@using Logic.Classes.Shift
+@using Logic.Enums;
+@model ZooBazaarWeb.Pages.ScheduleModel
+@{
+}
+<section class="u-align-center u-clearfix u-white u-section-10" id="carousel_579a" style="height:80vh;">
+    <div class="u-container-style u-group u-group-2">
+        <div class="u-container-layout u-container-layout-2 text-center">
+            <h1 class="u-text u-text-custom-color-1 u-title u-text-13">Shift schedule </h1>
+            <a href="#" "
+               class="u-align-center u-border-none u-btn u-btn-round u-button-style u-custom-color-2 u-hover-palette-4-dark-1 u-radius-2 u-btn-4">
+                <span class="u-file-icon u-icon u-text-white u-icon-6" data-animation-name="" data-animation-duration="0"
+                      data-animation-delay="0" data-animation-direction="">
+                    <img src="~/images/before.png"
+                         alt="">
+                </span>&nbsp;Before
+            </a>
+            <a href="#" 
+               class="u-align-center u-btn u-btn-round u-button-style u-custom-color-2 u-hover-palette-4-dark-1 u-radius-2 u-btn-3" style="margin-left: 440px;"
+               data-animation-name="" data-animation-duration="0" data-animation-delay="0"
+               data-animation-direction="">
+                Next&nbsp;<span class="u-file-icon u-icon u-text-white u-icon-5"
+                                data-animation-name="" data-animation-duration="0" data-animation-delay="0"
+                                data-animation-direction=""><img src="~/images/next.png" alt=""></span>
+            </a>
+            @{
+                Shift shift = Model.shift;
+            }
+            <div class="u-table u-table-responsive u-table-1">
+                <table class="u-table-entity">
+                    <colgroup>
+                        <col width="20%">
+                        <col width="20%">
+                        <col width="20%">
+                        <col width="20%">
+                        <col width="20%">
+                    </colgroup>
+                    <thead class="u-black u-table-header u-table-header-1">
+                        <tr style="height: 47px;">
+                            <th class="u-custom-color-2 u-table-cell u-table-cell-1"></th>
+                            @{
+                                int counter = 1;
+                                int i = 1;
+                            }
+                            @foreach (var item in shift.Date)
+                            {
+                                <th class="u-custom-color-2 u-table-cell u-table-cell-2">@item.Date.ToShortDateString()</th>
+                                counter++;
+                            }
+                            @while (counter < 5)
+                            {
+                                <th class="u-custom-color-2 u-table-cell u-table-cell-2">@shift.Date.Last().AddDays(i).ToShortDateString()</th>
+                                counter++;
+                                i++;
+                            }
+                        </tr>
+                    </thead>
+                    <tbody class="u-table-body">
+@*                        @foreach (var item in shift.ShiftType)
+                        {
+                            ShiftType shiftType = Enum.Parse<ShiftType>(item.ToString());
+                                if (item == 0 || item == 1)
+                            {
+                                <tr style="height: 62px;">
+                                    <td class="u-custom-color-2 u-table-cell u-table-cell-11">Monday</td>
+                                    <td class="u-border-1 u-border-grey-30 u-table-cell"></td>
+                                    <td class="u-border-1 u-border-grey-30 u-table-cell"></td>
+                                    <td class="u-border-1 u-border-grey-30 u-table-cell"></td>
+                                    <td class="u-border-1 u-border-grey-30 u-table-cell"></td>
+                                </tr>
+                            }
+
+                        }*@
+
+                        <tr style="height: 62px;">
+                            <td class="u-custom-color-2 u-table-cell u-table-cell-11">Monday</td>
+                            <td class="u-border-1 u-border-grey-30 u-table-cell">@shift.Date.Last().ToString("hh:mm tt")</td>
+                            <td class="u-border-1 u-border-grey-30 u-table-cell"></td>
+                            <td class="u-border-1 u-border-grey-30 u-table-cell"></td>
+                            <td class="u-border-1 u-border-grey-30 u-table-cell"></td>
+                        </tr>
+                        <tr style="height: 62px;">
+                            <td class="u-custom-color-2 u-table-cell u-table-cell-11">Tuesday</td>
+                            <td class="u-border-1 u-border-grey-30 u-table-cell"></td>
+                            <td class="u-border-1 u-border-grey-30 u-table-cell"></td>
+                            <td class="u-border-1 u-border-grey-30 u-table-cell">11:30 AM</td>
+                            <td class="u-border-1 u-border-grey-30 u-table-cell"></td>
+                        </tr>
+                        <tr style="height: 62px;">
+                            <td class="u-custom-color-2 u-table-cell u-table-cell-16">Wedensday</td>
+                            <td class="u-border-1 u-border-grey-30 u-table-cell"></td>
+                            <td class="u-border-1 u-border-grey-30 u-table-cell"></td>
+                            <td class="u-border-1 u-border-grey-30 u-table-cell"></td>
+                            <td class="u-border-1 u-border-grey-30 u-table-cell"></td>
+                        </tr>
+                        <tr style="height: 62px;">
+                            <td class="u-custom-color-2 u-table-cell u-table-cell-21">Thursday</td>
+                            <td class="u-border-1 u-border-grey-30 u-table-cell"></td>
+                            <td class="u-border-1 u-border-grey-30 u-table-cell">03:00 AM</td>
+                            <td class="u-border-1 u-border-grey-30 u-table-cell"></td>
+                            <td class="u-border-1 u-border-grey-30 u-table-cell"></td>
+                        </tr>
+                        <tr style="height: 62px;">
+                            <td class="u-custom-color-2 u-table-cell u-table-cell-26">Friday</td>
+                            <td class="u-border-1 u-border-grey-30 u-table-cell"></td>
+                            <td class="u-border-1 u-border-grey-30 u-table-cell"></td>
+                            <td class="u-border-1 u-border-grey-30 u-table-cell"></td>
+                            <td class="u-border-1 u-border-grey-30 u-table-cell"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,92 @@
+﻿@page
+@using Logic.Classes.Employees
+@model ZooBazaarWeb.Pages.AccountModel
+@{
+    Employee employee = Model.GetEmployee();
+}
+@if (TempData["Success"] != null)
+{
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script type="text/javascript">
+        toastr.options = { "positionClass": "toast-bottom-right" }
+        toastr.error('Your request has been sent ', 'bravo!')
+    </script>
+}
+@if (TempData["Alert"] != null)
+{
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script type="text/javascript">
+        toastr.options = { "positionClass": "toast-bottom-right" }
+        toastr.error('Your requeYour already reserved this day', 'bravo!')
+    </script>
+}
+<section class="u-align-center u-clearfix u-white u-section-1" id="carousel_579a">
+    <div class="u-clearfix u-sheet u-sheet-1">
+        <h1 class="u-custom-font u-font-raleway u-text u-text-custom-color-1 u-text-default u-text-1">Profile</h1>
+        <div class="u-align-left u-container-style u-custom-color-1 u-group u-radius-20 u-shape-round u-group-1">
+            <div class="u-container-layout u-container-layout-1">
+                <h6 class="u-custom-font u-font-open-sans u-text u-text-default u-text-2">name</h6>
+                <p class="u-custom-font u-text u-text-3">@employee.name</p>
+                <h6 class="u-custom-font u-font-open-sans u-text u-text-default u-text-4">Role</h6>
+                <p class="u-custom-font u-text u-text-5">Care taker</p>
+                <h6 class="u-custom-font u-font-open-sans u-text u-text-default u-text-6">Email</h6>
+                <a href="#"
+                   class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-2-base u-btn u-button-style u-none u-text-active-palette-2-base u-text-body-alt-color u-text-hover-palette-2-base u-btn-1">@employee.email</a>
+                <h6 class="u-custom-font u-font-open-sans u-text u-text-7">Phone</h6>
+                <a href="tel:+31658760191"
+                   class="u-border-1 u-border-active-palette-2-base u-border-hover-palette-2-base u-btn u-button-style u-none u-text-active-palette-2-base u-text-body-alt-color u-text-hover-palette-2-base u-btn-2">
+                    @employee.phoneNumber
+                </a>
+                <h6 class="u-custom-font u-font-open-sans u-text u-text-8">Gender</h6>
+                <p class="u-custom-font u-text u-text-9">@employee.gender</p>
+                <h6 class="u-custom-font u-font-open-sans u-text u-text-default u-text-10">Age</h6>
+                <p class="u-custom-font u-text u-text-11">@employee.age</p>
+            </div>
+        </div>
+        <img class="u-image u-image-round u-radius-20 u-image-1" alt="" data-image-width="1280" data-image-height="1280" src="~/images/profile.png">
+        <div class="u-container-style u-group u-group-2">
+            <div class="u-container-layout u-container-layout-2 text-center">
+                <div class="row justify-content-center">
+                    <div class="col-10">
+                        <form asp-page-handler="Prefrences" method="post">
+                            <h3>Choose your preference workday </h3>
+                            <div class="form-group">
+                                <div class='input-group date' id='datetimepicker1'>
+                                    <input type='date' asp-for="@Model.DateReserved" class="form-control" />
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                            <button class="btn btn-secondary w-50" type="submit">Send</button>
+                        </form>
+
+                    </div>
+                    <div class="col-10">
+                        <form asp-page-handler="Dayoff" method="post">
+                            <h3>Ask day off for vacations </h3>
+                            <div class="form-group">
+                                <div class='input-group date' id='datetimepicker1'>
+                                    <input type='date' asp-for="@Model.DateReservedVaccation" class="form-control" />
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                            <select class="form-select" asp-for="@Model.VaccationReason" aria-label="Default select example">
+                                <option selected>Choose reason</option>
+                                <option value="0">Vaccation</option>
+                                <option value="1">Illness</option>
+                                <option value="2">Other</option>
+                            </select>
+                            <button class="btn btn-secondary w-50 mt-3">Send</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

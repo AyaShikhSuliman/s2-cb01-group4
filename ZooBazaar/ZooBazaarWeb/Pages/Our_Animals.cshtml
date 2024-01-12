@@ -1,0 +1,52 @@
+﻿@page
+@model ZooBazaarWeb.Pages.Our_AnimalsModel
+@{
+}
+<section class="team-section">
+    <div class="container section  " id="section-team">
+
+        <div class="row justify-content-center text-center mb-5">
+            <div class="col-md-7 mb-5">
+                <h2 class="heading" data-aos="fade-up">Our Animals</h2>
+            </div>
+        </div>
+
+        <div class="row">
+
+            @foreach (var item in Model.AllAnimals)
+            {
+                int delay = 100;
+                if (delay == 400)
+                {
+                    delay = 100;
+                }
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="@delay">
+                    <div class="block-2">
+                        <div class="flipper">
+                            <div class="front" style="background-image: url('/images/(@item.AnimalType).jpg');">
+                                <div class="box">
+                                    <h2>@item.Name</h2>
+                                    <p>@item.AnimalType</p>
+                                </div>
+                            </div>
+                            <div class="back">
+
+                                <blockquote>
+                                    <p>Name: @item.Name <br /><br />Gender: @item.Gender <br /><br /> Weight:@item.Weight <br /><br />Location: @item.animalLocation </p>
+                                </blockquote>
+                                <div class="author d-flex">
+                                    <div class="image mr-3 align-self-center">
+                                        <img src="~/images/(@item.AnimalType).jpg" alt="">
+                                    </div>
+                                    <div class="name align-self-center">@item.Name<span class="position"><a href="https://youtu.be/lPlZF7Af0vI">live cam</a></span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                delay += 100;
+            }
+
+        </div>
+    </div>
+</section>
